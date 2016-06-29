@@ -45,6 +45,38 @@ app.controller('myFlashCardsCtrl', function($scope,$stateParams, $http, FlashCar
     });
   }
 
+  $scope.updateCard = (ind, card) =>{
+    $scope.updateItem = {};
+    console.log("show update field");
+    console.log("card.category:", card.category);
+    $scope.showUpdate =true;
+    $scope.updateItem.category = card.category;
+    $scope.updateItem.question = card.question;
+    $scope.updateItem.answer = card.answer;
+    $scope.passIndex = ind;
+    $scope.passCard = card;
+
+
+  }
+
+  $scope.updateFlashCard = (card, ind) =>{
+    FlashCard.updateCard(card, ind)
+    .then(card =>{
+      console.log("update: ", card.category);
+      console.log("ind", ind);
+      /*let updatedCard = {
+        _id : card._id,
+        category: $scope.updateItem.category || card.category,
+        question: $scope.updateItem.question || card.question,
+        answer: $scope.updateItem.answer || card.answer
+      }
+      $scope.flashCards.splice(ind,1);
+      $scope.flashCards.push(updatedCard)*/
+    })
+    .catch(err=>{
+      console.log("error: ", err );
+    });
+  }
 });
 
 
@@ -59,6 +91,7 @@ app.controller('quizMeCtrl', function($scope, $stateParams, FlashCard){
   $scope.card = {};
 
   $scope.save = function(){
+    $scope.showSkip = true;
     console.log("currCatagories:", $scope.currCatagories);
     for(let catagory in $scope.currCatagories){
       if ($scope.currCatagories[catagory] === true){
@@ -72,18 +105,28 @@ app.controller('quizMeCtrl', function($scope, $stateParams, FlashCard){
 
 
   $scope.next = function () {
-    if ($scope.card_index >= $scope.flashCards.length - 1)
+    console.log("next card");
+    if ($scope.card_index >= $scope.cardsToShow.length - 1)
       $scope.card_index = 0;
     else 
       $scope.card_index++;
-    console.log($scope.flashCards.length + '/' + $scope.card_index);
+    console.log($scope.cardsToShow.length + '/' + $scope.card_index);
   };
 
   $scope.answer = function (card, ans){
     $scope.card = card;
-    console.log("card: ", card);
+    console.log("card: ", card.answer);
     console.log("answer: ", ans);
-    if(card.answer === ans){}
+    if(card.answer === ans){
+      console.log("correct anwser");
+      swal({   title: "Correct",   text: "nice"});//, $scope.next); //next);
+      $scope.next();
+    }
+    else{
+      console.log("incorrect anwser");
+      swal({   title: "Incorrect!",   text: `Answer: ${card.answer}`});
+      $scope.next();
+    }
   }
 
 });

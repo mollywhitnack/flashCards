@@ -13,12 +13,30 @@
         <div>Question: {{flashCard.question}}</div>
         <div>Answer: {{flashCard.answer}}</div>
         <div>
-          <button class="btn btn-warning" ng-click = 'UpdateCard($index, flashCard)'>Update</button>
+        <br>
+        <br>
+        <br>
+          <button class="btn btn-warning" ng-click = 'updateCard($index, flashCard)'>Update</button>
           <button class="btn btn-danger" ng-click = 'DeleteCard($index, flashCard)'>Delete</button>
         </div>
       </span>
 </div>
 
+<form ng-submit = 'updateFlashCard(passCard, passIndex)' ng-show = "showUpdate">
+  <div class="form-group">
+      <label >Category</label>
+      <input type="text" class="form-control" placeholder="{{updateItem.category}}" ng-model = 'updateItem.cat' required>
+    </div>
+    <div class="form-group">
+      <label >Question</label>
+      <input type="text" class="form-control" placeholder="{{updateItem.question}}" ng-model = 'updateItem.ques' required>
+    </div>
+    <div class="form-group">
+      <label >Answer</label>
+      <input type="text" class="form-control" placeholder="{{updateItem.answer}}" ng-model = 'updateItem.ans' required>
+    </div>
+    <div class = "text-center submitbt"><button type="submit" class="btn btn-success">Update Flash Card</button></div>
+  </form>
 
 <form ng-submit = 'addFlashCard()'>
   <div class="form-group">

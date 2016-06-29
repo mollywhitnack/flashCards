@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/node_modules/sweetalert/dist/sweetalert.css">
+
   <meta charset="UTF-8">
   <title>Quiz Me</title>
+
 </head>
 <body ng-app = 'myApp' ng-controller='quizMeCtrl'>
 
@@ -35,7 +40,7 @@
         </div>
     </div>
     
-    <div> <button class = "btn btn-warning" ng-click="next()">Skip</button></div>
+    <div> <button ng-show = 'showSkip' class = "btn btn-warning" ng-click="next()">Skip</button></div>
 
 
 </body>
