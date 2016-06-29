@@ -27,8 +27,9 @@ var app = angular.module('myApp')
       })
     };
 
- this.deleteItem = (ind, item) =>{
-    return $http.delete(`/api/flashCards/${item.id}`)
+ this.deleteCard = (ind, item) =>{
+  console.log("irem: ", item);
+    return $http.delete(`/api/flashCards/${item._id}`)
       .then(() => {
         console.log(" in delete");
         return $q.resolve();

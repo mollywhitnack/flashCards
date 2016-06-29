@@ -10,27 +10,33 @@
 
 <div">Select Categories: </div>
   <form name="myForm">
-    <label ng-repeat="flashCard in flashCards | unique: 'category' " name="repeatSelect" id="repeatSelect" >
+    <span ng-repeat="flashCard in flashCards | unique: 'category' " name="repeatSelect" id="repeatSelect" >
       <input type="checkbox" ng-model="currCatagories[flashCard.category]" value="{{flashCard.category}}"> {{flashCard.category}}
-    </label>
+    </span>
   </form>
 
   <button ng-click ='save()' class = "btn btn-success">Start Quiz</button>
+
 
   <div class="categorySelected" ng-show = "flashCards.repeatSelect">
     <h1>{{flashCards.repeatSelect}}</h1>
     <div>Random Card</div>
   </div>
 
-    <div ng-repeat="card in selectedCatagories">
+    <div ng-repeat="card in cardsToShow">
         <div ng-if="card_index == $index">
-            <strong>{{card.question}}</strong>
-            <button ng-click="choose(card)">Choose</button>
+            <div class = 'flashCards'> Question: {{card.question}}</div>
+    
+            <form ng-submit="answer(card, ans)"> 
+              <input type = "text" ng-model ='ans'>
+              <button type="submit" class="btn btn-primary">Answer</button>
+            </form>
+
         </div>
     </div>
-    <hr>
-    <button ng-click="next()">Next</button>
-    <hr>Your Choice: {{card.question}}</div>
+    
+    <div> <button class = "btn btn-warning" ng-click="next()">Skip</button></div>
+
 
 </body>
 </html>
