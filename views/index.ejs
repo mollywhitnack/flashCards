@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/bower_components/angular/angular.js"></script>
+
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+
+  <script src="/js/module.js"></script>
+  <script src="/js/controllers.js"></script>
+  <script src="/js/services.js"></script>
+
+</head>
+<body ng-app = 'myApp' ng-controller = 'mainCtrl'>
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+  <h1 class = "center">FlashCards</h1>
+  </div>
+  </nav>
+
+  <div class="container">
+
+  <div class = "center">
+    <button type="button" class="btn btn-primary myFlashCards" ui-sref ="myFlashCards">My FlashCards</button>
+    <button type="button" class="btn btn-info quizMe" ui-sref ="quizMe">Quiz Me</button>
+  <div>
+<ui-view></ui-view>
+
+</div>
+
+  
+</body>
+</html>

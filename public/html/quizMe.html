@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Me</title>
+</head>
+<body ng-app = 'myApp' ng-controller='quizMeCtrl'>
+
+<hr>
+
+<div">Select Categories: </div>
+  <form name="myForm">
+    <label ng-repeat="flashCard in flashCards | unique: 'category' " name="repeatSelect" id="repeatSelect" >
+      <input type="checkbox" ng-model="currCatagories[flashCard.category]" value="{{flashCard.category}}"> {{flashCard.category}}
+    </label>
+  </form>
+
+  <button ng-click ='save()' class = "btn btn-success">Start Quiz</button>
+
+  <div class="categorySelected" ng-show = "flashCards.repeatSelect">
+    <h1>{{flashCards.repeatSelect}}</h1>
+    <div>Random Card</div>
+  </div>
+
+    <div ng-repeat="card in selectedCatagories">
+        <div ng-if="card_index == $index">
+            <strong>{{card.question}}</strong>
+            <button ng-click="choose(card)">Choose</button>
+        </div>
+    </div>
+    <hr>
+    <button ng-click="next()">Next</button>
+    <hr>Your Choice: {{card.question}}</div>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Flash Cards</title>
+</head>
+<body ng-app = 'myApp' ng-controller='myFlashCardsCtrl'>
+<hr>
+
+<div class = 'flashCardCont' ng-hide = "items.length ===0">
+      <span ng-repeat = 'flashCard in flashCards' class = "flashCards">
+        <div>Category: {{flashCard.category}}</div>
+        <div>Question: {{flashCard.question}}</div>
+        <div>Answer: {{flashCard.answer}}</div>
+        <div>
+          <button class="btn btn-warning" ng-click = 'UpdateCard($index, flashCard)'>Update</button>
+          <button class="btn btn-danger" ng-click = 'DeleteCard($index, flashCard)'>Delete</button>
+        </div>
+      </span>
+</div>
+
+
+<form ng-submit = 'addFlashCard()'>
+  <div class="form-group">
+      <label >Category</label>
+      <input type="text" class="form-control" placeholder="Category" ng-model = 'newItem.category' required>
+    </div>
+    <div class="form-group">
+      <label >Question</label>
+      <input type="text" class="form-control" placeholder="Question" ng-model = 'newItem.question' required>
+    </div>
+    <div class="form-group">
+      <label >Answer</label>
+      <input type="text" class="form-control" placeholder="Answer" ng-model = 'newItem.answer' required>
+    </div>
+    <div class = "text-center submitbt"><button type="submit" class="btn btn-primary">Add New Flash Card</button></div>
+  </form>
+
+
+
+
+
+</body>
+</html>
