@@ -14,13 +14,13 @@
 <hr>
 
 <div">Select Categories: </div>
-  <form name="myForm">
+  <form name="myForm" class = "stylecats">
     <span ng-repeat="flashCard in flashCards | unique: 'category' " name="repeatSelect" id="repeatSelect" >
       <input type="checkbox" ng-model="currCatagories[flashCard.category]" value="{{flashCard.category}}"> {{flashCard.category}}
     </span>
   </form>
-
-  <button ng-click ='save()' class = "btn btn-success">Start Quiz</button>
+  <br>
+  <button ng-hide = 'showSkip' ng-click ='save()' class = "btn btn-success">Start Quiz</button>
 
 
   <div class="categorySelected" ng-show = "flashCards.repeatSelect">
@@ -28,9 +28,10 @@
     <div>Random Card</div>
   </div>
 
+<hr>
     <div ng-repeat="card in cardsToShow">
         <div ng-if="card_index == $index">
-            <div class = 'flashCards'> Question: {{card.question}}</div>
+            <div class = 'flashCardsQuiz'> Question: {{card.question}}</div>
     
             <form ng-submit="answer(card, ans)"> 
               <input type = "text" ng-model ='ans'>
@@ -40,7 +41,9 @@
         </div>
     </div>
     
-    <div> <button ng-show = 'showSkip' class = "btn btn-warning" ng-click="next()">Skip</button></div>
+    <div class = "skRsBtns"> <span class = "score" ng-show = 'showSkip' >Score: {{score}}</span></div>
+    <div class = "skRsBtns"> <button ng-show = 'showSkip' class = "btn btn-warning" ng-click="next()">Skip</button></div>
+    <div class = "skRsBtns"> <button ng-show = 'showSkip' class = "btn btn-info" ng-click="reset()">Restart Quiz</button></div>
 
 
 </body>

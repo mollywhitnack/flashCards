@@ -46,32 +46,32 @@ app.controller('myFlashCardsCtrl', function($scope,$stateParams, $http, FlashCar
   }
 
   $scope.updateCard = (ind, card) =>{
-    $scope.updateItem = {};
-    console.log("show update field");
-    console.log("card.category:", card.category);
+    $scope.passCard = {};
+    //console.log("show update field");
+    //console.log("card.category:", card.category);
     $scope.showUpdate =true;
-    $scope.updateItem.category = card.category;
-    $scope.updateItem.question = card.question;
-    $scope.updateItem.answer = card.answer;
+    $scope.passCard.category = card.category;
+    $scope.passCard.question = card.question;
+    $scope.passCard.answer = card.answer;
+    $scope.passCard._id = card._id;
     $scope.passIndex = ind;
-    $scope.passCard = card;
-
 
   }
 
-  $scope.updateFlashCard = (card, ind) =>{
-    FlashCard.updateCard(card, ind)
+  $scope.updateFlashCard = (passCard, passInd) =>{
+    $scope.showUpdate =false;
+    FlashCard.updateCard(passInd, passCard)
     .then(card =>{
-      console.log("update: ", card.category);
-      console.log("ind", ind);
-      /*let updatedCard = {
-        _id : card._id,
-        category: $scope.updateItem.category || card.category,
-        question: $scope.updateItem.question || card.question,
-        answer: $scope.updateItem.answer || card.answer
+      console.log("update: ", passCard);
+      console.log("ind", passInd);
+      let updatedCard = {
+        _id : passCard._id,
+        category: $scope.updateItem.cat || passCard.category,
+        question: $scope.updateItem.ques || passCard.question,
+        answer: $scope.updateItem.ans || passCard.answer
       }
-      $scope.flashCards.splice(ind,1);
-      $scope.flashCards.push(updatedCard)*/
+      //$scope.flashCards.splice(passInd,1);
+      $scope.flashCards.splice(passInd, 1, updatedCard);
     })
     .catch(err=>{
       console.log("error: ", err );
@@ -89,6 +89,17 @@ app.controller('quizMeCtrl', function($scope, $stateParams, FlashCard){
 
   $scope.card_index = 0;
   $scope.card = {};
+  $scope.score = 0;
+
+  $scope.reset = function(){
+    $scope.showSkip = false;
+    $scope.currCatagories = {};
+    $scope.selectedCatagories = [];
+    $scope.cardsToShow = [];
+    $scope.card_index = 0;
+    $scope.card = {};
+    $scope.score =0;
+  }
 
   $scope.save = function(){
     $scope.showSkip = true;
@@ -101,7 +112,9 @@ app.controller('quizMeCtrl', function($scope, $stateParams, FlashCard){
     $scope.cardsToShow = getCardsFromCatagory($scope.selectedCatagories, $scope.flashCards);
     console.log("cards to show:", $scope.cardsToShow);
     console.log("selectedCatagories:", $scope.selectedCatagories);
+    //setTimeout(timeUp1, 2000);
   };
+
 
 
   $scope.next = function () {
@@ -114,12 +127,14 @@ app.controller('quizMeCtrl', function($scope, $stateParams, FlashCard){
   };
 
   $scope.answer = function (card, ans){
+    //setTimeout(timeUp1, 2000);
     $scope.card = card;
     console.log("card: ", card.answer);
     console.log("answer: ", ans);
     if(card.answer === ans){
       console.log("correct anwser");
-      swal({   title: "Correct",   text: "nice"});//, $scope.next); //next);
+      swal({   title: "Correct!",   text: ""});//, $scope.next); //next);
+      $scope.score++;
       $scope.next();
     }
     else{

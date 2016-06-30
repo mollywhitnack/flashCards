@@ -7,6 +7,39 @@
   height: 180px;
 }
 
+.flashCardsQuiz{
+  display: inline-block;
+  border: 1px solid #000;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  height: 180px;
+  width: 150px;
+  padding-top: 50px;
+  font-size: 15px;
+}
+.scoreCont{
+  text-align: center;
+}
+
+.score{
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100px;
+  margin-top: 10px;
+  display: inline-block;
+  font-size: 15px;
+}
+
+.stylecats{
+  font-size: 20px;
+}
+
+.skRsBtns{
+  margin-bottom: 15px;
+
+}
 .center{
   text-align: center;
 }

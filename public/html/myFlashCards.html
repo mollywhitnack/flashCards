@@ -25,20 +25,20 @@
 <form ng-submit = 'updateFlashCard(passCard, passIndex)' ng-show = "showUpdate">
   <div class="form-group">
       <label >Category</label>
-      <input type="text" class="form-control" placeholder="{{updateItem.category}}" ng-model = 'updateItem.cat' required>
+      <input type="text" class="form-control" placeholder="{{passCard.category}}" ng-model = 'updateItem.cat' required>
     </div>
     <div class="form-group">
       <label >Question</label>
-      <input type="text" class="form-control" placeholder="{{updateItem.question}}" ng-model = 'updateItem.ques' required>
+      <input type="text" class="form-control" placeholder="{{passCard.question}}" ng-model = 'updateItem.ques' required>
     </div>
     <div class="form-group">
       <label >Answer</label>
-      <input type="text" class="form-control" placeholder="{{updateItem.answer}}" ng-model = 'updateItem.ans' required>
+      <input type="text" class="form-control" placeholder="{{passCard.answer}}" ng-model = 'updateItem.ans' required>
     </div>
     <div class = "text-center submitbt"><button type="submit" class="btn btn-success">Update Flash Card</button></div>
   </form>
 
-<form ng-submit = 'addFlashCard()'>
+<form ng-submit = 'addFlashCard()' ng-hide = "showUpdate">
   <div class="form-group">
       <label >Category</label>
       <input type="text" class="form-control" placeholder="Category" ng-model = 'newItem.category' required>

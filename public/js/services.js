@@ -17,8 +17,8 @@ var app = angular.module('myApp')
     };
 
 
-  this.addFlashCard = itemObj =>{
-    return $http.post(`/api/flashCards`, itemObj)
+  this.addFlashCard = (item) =>{
+    return $http.post(`/api/flashCards`, item)
       .then(res => {
         return $q.resolve(res.data);
       })
@@ -40,6 +40,19 @@ var app = angular.module('myApp')
     };
 
     this.updateCard = (ind, item) =>{
+      //console.log("id to update: ", item._id);
+      //console.log(`/api/flashCards/${item._id}`);
+      return $http.put(`/api/flashCards/${item._id}`, item)
+      .then(res => {
+        console.log(" in update service");
+        return $q.resolve(res.data);
+      })
+      .catch(err => {   
+        console.log('err:', err);
+      })
+    };
+
+   /* this.updateFlashCard = (item, ind) =>{
       return $http.put(`/api/flashCards/${item._id}`)
       .then(res => {
         console.log(" in update");
@@ -48,5 +61,5 @@ var app = angular.module('myApp')
       .catch(err => {   
         console.log('err:', err);
       })
-    };
+    };*/
 });

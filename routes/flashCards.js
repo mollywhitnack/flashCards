@@ -33,6 +33,7 @@ router.route('/:id')
     });
   })
   .put((req, res)=>{
+    console.log("-------------upadte here")
     FlashCard.findByIdAndUpdate(req.params.id, req.body, {new: true }, (err, savedDoc) => {
        console.log("savedDoc:",savedDoc );  //is the old doc unless options object set to new
       res.status(err ? 400 : 200).send(err || savedDoc);
