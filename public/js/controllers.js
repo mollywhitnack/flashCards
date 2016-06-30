@@ -45,33 +45,20 @@ app.controller('myFlashCardsCtrl', function($scope,$stateParams, $http, FlashCar
     });
   }
 
-  $scope.updateCard = (ind, card) =>{
-    $scope.passCard = {};
+  $scope.updateClickCard = (ind, card) =>{
+    $scope.testCard = card;
     //console.log("show update field");
-    //console.log("card.category:", card.category);
+    console.log("card.category:", $scope.testCard);
     $scope.showUpdate =true;
-    $scope.passCard.category = card.category;
-    $scope.passCard.question = card.question;
-    $scope.passCard.answer = card.answer;
-    $scope.passCard._id = card._id;
     $scope.passIndex = ind;
 
   }
 
-  $scope.updateFlashCard = (passCard, passInd) =>{
+  $scope.updateFlashCard = () =>{
     $scope.showUpdate =false;
-    FlashCard.updateCard(passInd, passCard)
+    FlashCard.updateCard($scope.testCard._id, $scope.testCard)
     .then(card =>{
-      console.log("update: ", passCard);
-      console.log("ind", passInd);
-      let updatedCard = {
-        _id : passCard._id,
-        category: $scope.updateItem.cat || passCard.category,
-        question: $scope.updateItem.ques || passCard.question,
-        answer: $scope.updateItem.ans || passCard.answer
-      }
-      //$scope.flashCards.splice(passInd,1);
-      $scope.flashCards.splice(passInd, 1, updatedCard);
+      console.log("here:" , $scope.testCard._id, " , " , $scope.testCard);
     })
     .catch(err=>{
       console.log("error: ", err );

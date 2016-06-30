@@ -16,24 +16,24 @@
         <br>
         <br>
         <br>
-          <button class="btn btn-warning" ng-click = 'updateCard($index, flashCard)'>Update</button>
+          <button class="btn btn-warning" ng-click = 'updateClickCard($index, flashCard)'>Update</button>
           <button class="btn btn-danger" ng-click = 'DeleteCard($index, flashCard)'>Delete</button>
         </div>
       </span>
 </div>
 
-<form ng-submit = 'updateFlashCard(passCard, passIndex)' ng-show = "showUpdate">
+<form ng-submit = 'updateFlashCard()' ng-show = "showUpdate">
   <div class="form-group">
       <label >Category</label>
-      <input type="text" class="form-control" placeholder="{{passCard.category}}" ng-model = 'updateItem.cat' required>
+      <input type="text" class="form-control" value="{{testCard.category}}" ng-model = 'testCard.category' required>
     </div>
     <div class="form-group">
       <label >Question</label>
-      <input type="text" class="form-control" placeholder="{{passCard.question}}" ng-model = 'updateItem.ques' required>
+      <input type="text" class="form-control" value="{{testCard.question}}" ng-model = 'testCard.question' required>
     </div>
     <div class="form-group">
       <label >Answer</label>
-      <input type="text" class="form-control" placeholder="{{passCard.answer}}" ng-model = 'updateItem.ans' required>
+      <input type="text" class="form-control" placeholder="{{testCard.answer}}" ng-model = 'testCard.answer' required>
     </div>
     <div class = "text-center submitbt"><button type="submit" class="btn btn-success">Update Flash Card</button></div>
   </form>

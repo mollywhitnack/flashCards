@@ -39,13 +39,14 @@ var app = angular.module('myApp')
       })
     };
 
-    this.updateCard = (ind, item) =>{
+    this.updateCard = (id, card) =>{
       //console.log("id to update: ", item._id);
       //console.log(`/api/flashCards/${item._id}`);
-      return $http.put(`/api/flashCards/${item._id}`, item)
+      return $http.put(`/api/flashCards/${id}`, card)
       .then(res => {
-        console.log(" in update service");
-        return $q.resolve(res.data);
+        console.log("item: " ,card);
+        console.log(" in update service", res.data);
+        return $q.resolve(card);
       })
       .catch(err => {   
         console.log('err:', err);
