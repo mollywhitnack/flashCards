@@ -13,9 +13,9 @@
 
 <hr>
 
-<div">Select Categories: </div>
+<div ng-hide = 'showSkip' >Select Categories: </div>
   <form name="myForm" class = "stylecats">
-    <span ng-repeat="flashCard in flashCards | unique: 'category' " name="repeatSelect" id="repeatSelect" >
+    <span ng-hide = 'showSkip' ng-repeat="flashCard in flashCards | unique: 'category' " name="repeatSelect" id="repeatSelect" >
       <input type="checkbox" ng-model="currCatagories[flashCard.category]" value="{{flashCard.category}}"> {{flashCard.category}}
     </span>
   </form>
@@ -31,11 +31,11 @@
 <hr>
     <div ng-repeat="card in cardsToShow">
         <div ng-if="card_index == $index">
-            <div class = 'flashCardsQuiz'> Question: {{card.question}}</div>
+            <div class = 'flashCardsQuiz'> Question: <br> {{card.question}}</div>
     
             <form ng-submit="answer(card, ans)"> 
               <input type = "text" ng-model ='ans'>
-              <button type="submit" class="btn btn-primary">Answer</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
             </form>
 
         </div>
